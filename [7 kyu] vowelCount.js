@@ -1,0 +1,17 @@
+/*
+Vowel Count
+===
+
+Return the number (count) of vowels in the given string.
+
+We will consider a, e, i, o, and u as vowels for this Kata.
+
+The input string will only consist of lower case letters and/or spaces.
+*/
+
+const getCount = str => {
+  const vowelReturn = str.split('').filter(letter => /[aeiou]/gi.test(letter));
+  return vowelReturn.length;
+};
+
+console.log(getCount('abracadabra')); // 5
