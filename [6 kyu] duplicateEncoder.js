@@ -18,11 +18,9 @@ Examples:
 
 const duplicateEncode = str => {
   const strArr = str.toUpperCase().split('');
-  strArr.forEach(character => {
-    if (strArr.includes(character)) {
-      console.log(character);
-    }
-  });
+  const result = [];
+  strArr.forEach(element => {});
+  return result.join('');
 };
 
 console.log(duplicateEncode('recede')); // "()()()"

@@ -16,4 +16,4 @@ function ipValidation(num) {
   }
   return false;
 }
-console.log(ipValidation('123.456.78.90'));
+console.log(ipValidation('123.11.78.90'));
