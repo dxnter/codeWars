@@ -17,20 +17,29 @@ function bestServer(servers) {
     .map(server => {
       const { price, name, testdata: dailyNetworkDelay } = server;
       const disconnections = dailyNetworkDelay.filter(networkResponse => networkResponse === -1);
-      const disconnectionRate = (disconnections.length / 24 * 100).toFixed(2);
+      const disconnectionRate = Number((disconnections.length / 24 * 100).toFixed(2));
       const averageNetworkDelay =
         dailyNetworkDelay.filter(networkResponse => networkResponse !== -1).reduce((a, b) => a + b) /
         (24 - disconnections.length);
       const delayExceeding = dailyNetworkDelay.filter(networkResponse => networkResponse > 300).length;
       return {
         name,
-        disconnectionRate,
-        averageNetworkDelay,
         delayExceeding,
-        price,
+        data: {
+          price,
+          disconnectionRate,
+          averageNetworkDelay,
+        },
       };
     })
-    .filter(server => server.disconnectionRate <= 20 && server.delayExceeding === 0 && server.price <= 500);
+    .filter(server => server.data.disconnectionRate <= 20 && server.delayExceeding === 0 && server.data.price <= 500);
+
+  if (serverList.length === 0) return '';
+
+  const summedData = serverList.map(server => Object.values(server.data)).map(server => server.reduce((a, b) => a + b));
+  const lowestSum = summedData.indexOf(Math.min(...summedData));
+
+  return serverList[lowestSum].name;
 }
 
 const sv1 = {
@@ -79,4 +88,9 @@ const sv9 = {
   testdata: [40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40],
 };
 
-bestServer([sv1, sv2]);
+console.log(bestServer([sv1, sv2]));
+console.log(bestServer([sv3, sv4]));
+console.log(bestServer([sv1, sv5]));
+console.log(bestServer([sv5, sv6]));
+console.log(bestServer([sv1, sv7]));
+console.log(bestServer([sv7, sv8, sv9]));
