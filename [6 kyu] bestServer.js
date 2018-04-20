@@ -13,27 +13,24 @@ Function bestServer accept 1 parameter servers, it is an array of servers data.
  */
 
 function bestServer(servers) {
-  const serverInformation = servers.map(server => {
-    const { price, name, testdata: dailyNetworkDelay } = server;
-    const disconnections = dailyNetworkDelay.filter(networkResponse => networkResponse === -1);
-    const disconnectionRate = (disconnections.length / 24 * 100).toFixed(2);
-    const averageNetworkDelay =
-      dailyNetworkDelay.filter(networkResponse => networkResponse !== -1).reduce((a, b) => a + b) /
-      (24 - disconnections.length);
-    const delayExceeding = dailyNetworkDelay.filter(networkResponse => networkResponse > 300).length;
-    return {
-      name,
-      disconnectionRate,
-      averageNetworkDelay,
-      delayExceeding,
-      price,
-    };
-  });
-
-  const response = serverInformation.filter(
-    server => server.disconnectionRate <= 20 && server.delayExceeding === 0 && server.price <= 500
-  );
-  console.log(response);
+  const serverList = servers
+    .map(server => {
+      const { price, name, testdata: dailyNetworkDelay } = server;
+      const disconnections = dailyNetworkDelay.filter(networkResponse => networkResponse === -1);
+      const disconnectionRate = (disconnections.length / 24 * 100).toFixed(2);
+      const averageNetworkDelay =
+        dailyNetworkDelay.filter(networkResponse => networkResponse !== -1).reduce((a, b) => a + b) /
+        (24 - disconnections.length);
+      const delayExceeding = dailyNetworkDelay.filter(networkResponse => networkResponse > 300).length;
+      return {
+        name,
+        disconnectionRate,
+        averageNetworkDelay,
+        delayExceeding,
+        price,
+      };
+    })
+    .filter(server => server.disconnectionRate <= 20 && server.delayExceeding === 0 && server.price <= 500);
 }
 
 const sv1 = {
@@ -82,4 +79,4 @@ const sv9 = {
   testdata: [40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40],
 };
 
-bestServer([sv7, sv8, sv9]);
+bestServer([sv1, sv2]);
