@@ -1,8 +1,0 @@
-{
-  "name": "code-wars",
-  "version": "1.0.0",
-  "main": "index.js",
-  "repository": "https://github.com/dxnter/codeWars",
-  "author": "Danny <contact@danfoster.io>",
-  "license": "MIT"
-}
