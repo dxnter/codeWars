@@ -15,9 +15,9 @@ Here's the deal:
 const generateHashtag = str => {
   if (str.length > 140 || !str) return false;
   return `#${str
-    .split(" ")
+    .split(' ')
     .map(word => word.charAt(0).toUpperCase() + word.substr(1))
-    .join("")}`;
+    .join('')}`;
 };
 
 console.log(generateHashtag('Hello World'));
