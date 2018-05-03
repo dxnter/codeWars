@@ -16,5 +16,3 @@ const validISBN10 = isbn => {
   if (isbnArray.includes(NaN)) return false;
   return isbnArray.reduce((total, number, index) => total + number * (index + 1)) % 11 === 0;
 };
-
-console.log(validISBN10('X123456788'));
