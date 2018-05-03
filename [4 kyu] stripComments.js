@@ -10,7 +10,6 @@ const solution = (input, markers) =>
     .map(sentence => {
       const commentMarker = markers.find(marker => sentence.includes(marker));
       if (commentMarker) {
-        console.log(commentMarker);
         return sentence.slice(0, sentence.indexOf(commentMarker)).trim();
       }
       return sentence.trim();
