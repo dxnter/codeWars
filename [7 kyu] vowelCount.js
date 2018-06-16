@@ -10,8 +10,7 @@ The input string will only consist of lower case letters and/or spaces.
 */
 
 const getCount = str => {
-  const vowelReturn = str.split('').filter(letter => /[aeiou]/gi.test(letter));
-  return vowelReturn.length;
+  return str.split('').filter(letter => /[aeiou]/gi.test(letter)).length;
 };
 
 console.log(getCount('abracadabra')); // 5
