@@ -15,7 +15,9 @@ function driver(data) {
     .padStart(2, 0);
   const initials = `${firstName.charAt(0)}${middleName === '' ? 9 : middleName.charAt(0)}`;
 
-  const licenseNumber = `${foreName}${decadeDigit}${birthMonth}${birthDay}${year.charAt(year.length - 1)}${initials}9AA`;
+  const licenseNumber = `${foreName}${decadeDigit}${birthMonth}${birthDay}${year.charAt(
+    year.length - 1
+  )}${initials}9AA`;
   return licenseNumber;
 }
 
